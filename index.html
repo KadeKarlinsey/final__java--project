@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Milepost Motors | Used Car Shopping</title>
+  <meta name="description" content="Search used cars by make or model, filter by price, and sort the results.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">M</span>Milepost Motors</a>
+      <ul>
+        <li><a href="#results">Browse cars</a></li>
+        <li><a href="#about">About the data</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <h1 id="hero-title">Find your next used car.</h1>
+      <p class="lede">Search by make or model, set a price ceiling, and sort the lot your way.</p>
+
+      <form class="search" id="search-form" role="search">
+        <label for="search-input" class="visually-hidden">Search by make or model</label>
+        <input id="search-input" type="search" placeholder="Try “Toyota”, “Camry”, or “Ford Mustang”" autocomplete="off">
+        <button class="btn" id="search-btn" type="submit">Search</button>
+      </form>
+
+      <div class="chips" aria-label="Quick searches">
+        <span>Popular:</span>
+        <button class="chip" type="button" data-q="Toyota">Toyota</button>
+        <button class="chip" type="button" data-q="Honda">Honda</button>
+        <button class="chip" type="button" data-q="Ford">Ford</button>
+        <button class="chip" type="button" data-q="Subaru">Subaru</button>
+        <button class="chip" type="button" data-q="Jeep">Jeep</button>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="controls" aria-label="Filter and sort results">
+      <div class="field">
+        <label for="make-filter">Make</label>
+        <select id="make-filter"><option value="">All makes</option></select>
+      </div>
+      <div class="field">
+        <label for="price-filter">Maximum price</label>
+        <div class="range-row">
+          <input id="price-filter" type="range" min="5000" max="60000" step="1000" value="60000">
+          <output id="price-output" for="price-filter">Any price</output>
+        </div>
+      </div>
+      <div class="field">
+        <label for="sort">Sort by</label>
+        <select id="sort">
+          <option value="newest">Newest to oldest</option>
+          <option value="oldest">Oldest to newest</option>
+          <option value="az">Alphabetical A to Z</option>
+          <option value="za">Alphabetical Z to A</option>
+          <option value="price-low">Price: low to high</option>
+          <option value="price-high">Price: high to low</option>
+        </select>
+      </div>
+    </section>
+
+    <p class="notice" id="notice" hidden></p>
+
+    <section id="results" aria-labelledby="results-title">
+      <div class="results-head">
+        <h2 id="results-title">On the lot</h2>
+        <p id="status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="grid" id="grid" aria-busy="false"></div>
+      <div class="more-wrap"><button class="btn btn-outline" id="more-btn" type="button" hidden>Show more cars</button></div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About the data</h2>
+      <div>
+        <p>Makes and models are fetched live from the U.S. government’s NHTSA vehicle database (vPIC API) every time you search.</p>
+        <p>The NHTSA database does not list cars for sale, so the year, mileage, price, color, and transmission on each listing are generated sample data for this demo. Nothing here is a real offer.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <p>© 2026 Milepost Motors. Demo project, no real inventory.</p>
+      <p>Vehicle data: <a href="https://vpic.nhtsa.dot.gov/api/" target="_blank" rel="noopener">NHTSA vPIC API</a></p>
+    </div>
+  </footer>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div id="detail-content"></div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
